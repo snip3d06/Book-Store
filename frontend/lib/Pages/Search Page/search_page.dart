@@ -3,6 +3,7 @@ import 'package:frontend/Pages/Search%20Page/category_card_list.dart';
 import 'package:provider/provider.dart';
 import 'filters.dart';
 import 'search_bar.dart';
+import 'search_results.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class SearchPage extends StatelessWidget {
                 if (filters.text.isEmpty) {
                   return CategoryCardList();
                 }
-                return Container();
+                return SearchResults();
               },
             ),
           )
