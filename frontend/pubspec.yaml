@@ -62,17 +62,6 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
-  assets:
-    - Assets/Category Images/all.jpg
-    - Assets/Category Images/science_fiction.jpg
-    - Assets/Category Images/action.jpg
-    - Assets/Category Images/fantasy.jpg
-    - Assets/Category Images/adventure.jpg
-    - Assets/Category Images/horror.jpg
-    - Assets/Category Images/romance.jpg
-    - Assets/Category Images/mystery.jpg
-    - Assets/Category Images/action.jpg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
