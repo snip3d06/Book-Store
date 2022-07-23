@@ -15,9 +15,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: const HomeAppBar().build(context),
       body: Container(
-        decoration: const BoxDecoration(
-            color: Color.fromRGBO(235, 245, 235, 1),
-            borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30),
             )),

@@ -73,6 +73,38 @@ class ReccomendationContent extends StatelessWidget {
                   height: 150,
                 );
               }),
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Text('Explore the Classics',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          ),
+          StreamBuilder(
+              stream: Dio()
+                  .get('http://192.168.0.16:8000/api/classic_books/')
+                  .asStream(),
+              builder: (context, AsyncSnapshot<Response> snapshot) {
+                if (snapshot.hasData) {
+                  List data = snapshot.data!.data;
+                  data.shuffle();
+                  return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Row(
+                          children: [
+                            for (var book in data.sublist(0, 5))
+                              BookSmallDisplay(
+                                  name: book['name'],
+                                  price: book['price'],
+                                  image: book['image']),
+                          ],
+                        ),
+                      ));
+                }
+                return Container(
+                  height: 150,
+                );
+              }),
         ],
       ),
     );

@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 ThemeData appTheme() {
   return ThemeData(
       brightness: Brightness.light,
-      colorScheme: ColorScheme.light(primary: Colors.green.shade900),
+      colorScheme: ColorScheme.light(
+        primary: Colors.green.shade900,
+        secondary: Colors.green,
+        tertiary: Colors.white,
+        background: Color.fromRGBO(235, 245, 235, 1),
+      ),
       appBarTheme: AppBarTheme(
           color: Colors.white,
           elevation: 0,
