@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:frontend/book_small_display.dart';
 import 'package:provider/provider.dart';
 import 'search_change_notifier.dart';
@@ -11,10 +10,10 @@ class SearchResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: Dio().post('http://192.168.0.16:8000/api/search/', data: {
-        "search":
-            Provider.of<SearchChangeNotifier>(context, listen: true).searchText,
-      }).asStream(),
+      stream: Dio()
+          .get(
+              'http://192.168.0.16:8000/api/search/${Provider.of<SearchChangeNotifier>(context, listen: true).searchText}')
+          .asStream(),
       builder: (context, AsyncSnapshot<Response> snapshot) {
         if (snapshot.hasData) {
           return Padding(
@@ -27,9 +26,12 @@ class SearchResults extends StatelessWidget {
                 children: [
                   for (Map book in snapshot.data!.data)
                     BookSmallDisplay(
-                        name: book['name'],
-                        price: book['price'],
-                        image: book['image']),
+                      id: book['id'],
+                      name: book['name'],
+                      price: book['price'],
+                      image: book['main_image'],
+                      description: book['description'],
+                    ),
                 ],
               ),
             ),

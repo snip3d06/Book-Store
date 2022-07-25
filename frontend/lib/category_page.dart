@@ -35,7 +35,7 @@ class CategoryPage extends StatelessWidget {
           ),
           SliverList(
               delegate: SliverChildListDelegate([
-            Container(
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
               child: Column(
                 children: [
@@ -46,9 +46,11 @@ class CategoryPage extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.bold)),
                   ),
                   StreamBuilder(
-                      stream: Dio().post(
-                          'http://192.168.0.16:8000/api/trending_books_by_category/',
-                          data: {'category': name}).asStream(),
+                      stream: Dio()
+                          .get(
+                            'http://192.168.0.16:8000/api/trending_books_by_category/$name',
+                          )
+                          .asStream(),
                       builder: (context, AsyncSnapshot<Response> snapshot) {
                         if (snapshot.hasData) {
                           List data = snapshot.data!.data;
@@ -62,16 +64,19 @@ class CategoryPage extends StatelessWidget {
                                   children: [
                                     for (var book in data)
                                       BookSmallDisplay(
-                                          name: book['name'],
-                                          price: book['price'],
-                                          image: book['image']),
+                                        id: book['id'],
+                                        name: book['name'],
+                                        price: book['price'],
+                                        image: book['main_image'],
+                                        description: book['description'],
+                                      ),
                                   ],
                                 ),
                               ));
                         }
                         return const SizedBox(
                           height: 150,
-                          child: CircularProgressIndicator(),
+                          child: Center(child: CircularProgressIndicator()),
                         );
                       }),
                   Align(
@@ -81,9 +86,11 @@ class CategoryPage extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.bold)),
                   ),
                   StreamBuilder(
-                      stream: Dio().post(
-                          'http://192.168.0.16:8000/api/classic_books_by_category/',
-                          data: {'category': name}).asStream(),
+                      stream: Dio()
+                          .get(
+                            'http://192.168.0.16:8000/api/classic_books_by_category/$name',
+                          )
+                          .asStream(),
                       builder: (context, AsyncSnapshot<Response> snapshot) {
                         if (snapshot.hasData) {
                           List data = snapshot.data!.data;
@@ -97,15 +104,19 @@ class CategoryPage extends StatelessWidget {
                                   children: [
                                     for (var book in data)
                                       BookSmallDisplay(
-                                          name: book['name'],
-                                          price: book['price'],
-                                          image: book['image']),
+                                        id: book['id'],
+                                        name: book['name'],
+                                        price: book['price'],
+                                        image: book['main_image'],
+                                        description: book['description'],
+                                      ),
                                   ],
                                 ),
                               ));
                         }
-                        return Container(
+                        return const SizedBox(
                           height: 150,
+                          child: Center(child: CircularProgressIndicator()),
                         );
                       }),
                   Align(
@@ -115,9 +126,11 @@ class CategoryPage extends StatelessWidget {
                             fontSize: 20, fontWeight: FontWeight.bold)),
                   ),
                   StreamBuilder(
-                      stream: Dio().post(
-                          'http://192.168.0.16:8000/api/authors_by_category/',
-                          data: {'category': name}).asStream(),
+                      stream: Dio()
+                          .get(
+                            'http://192.168.0.16:8000/api/authors_by_category/$name',
+                          )
+                          .asStream(),
                       builder: (context, AsyncSnapshot<Response> snapshot) {
                         if (snapshot.hasData) {
                           List data = snapshot.data!.data;
@@ -137,8 +150,9 @@ class CategoryPage extends StatelessWidget {
                                 ),
                               ));
                         }
-                        return Container(
-                          height: 150,
+                        return const SizedBox(
+                          height: 96,
+                          child: Center(child: CircularProgressIndicator()),
                         );
                       }),
                 ],

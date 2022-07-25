@@ -16,7 +16,12 @@ class AuthorAvatar extends StatelessWidget {
             backgroundImage: NetworkImage(image),
             radius: 40,
           ),
-          Text(name, style: const TextStyle(fontSize: 15)),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Text(name,
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+          )
         ],
       ),
     );

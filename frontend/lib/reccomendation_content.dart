@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/category_card.dart';
 
@@ -37,8 +35,9 @@ class ReccomendationContent extends StatelessWidget {
                     ),
                   );
                 }
-                return Container(
+                return const SizedBox(
                   height: 150,
+                  child: Center(child: CircularProgressIndicator()),
                 );
               }),
           const Align(
@@ -62,15 +61,19 @@ class ReccomendationContent extends StatelessWidget {
                           children: [
                             for (var book in data.sublist(0, 5))
                               BookSmallDisplay(
-                                  name: book['name'],
-                                  price: book['price'],
-                                  image: book['image']),
+                                id: book['id'],
+                                name: book['name'],
+                                price: book['price'],
+                                image: book['main_image'],
+                                description: book['description'],
+                              ),
                           ],
                         ),
                       ));
                 }
-                return Container(
+                return const SizedBox(
                   height: 150,
+                  child: Center(child: CircularProgressIndicator()),
                 );
               }),
           const Align(
@@ -94,15 +97,19 @@ class ReccomendationContent extends StatelessWidget {
                           children: [
                             for (var book in data.sublist(0, 5))
                               BookSmallDisplay(
-                                  name: book['name'],
-                                  price: book['price'],
-                                  image: book['image']),
+                                id: book['id'],
+                                name: book['name'],
+                                price: book['price'],
+                                image: book['main_image'],
+                                description: book['description'],
+                              ),
                           ],
                         ),
                       ));
                 }
-                return Container(
+                return const SizedBox(
                   height: 150,
+                  child: Center(child: CircularProgressIndicator()),
                 );
               }),
         ],
